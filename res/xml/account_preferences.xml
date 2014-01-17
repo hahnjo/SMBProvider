@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<PreferenceCategory />
+
+	<Preference
+		android:key="@string/account_preferences_key"
+		android:title="@string/preferences">
+
+		<intent android:action="de.hahnjo.android.smbprovider.AccountPreferences" />
+
+	</Preference>
+
+</PreferenceScreen>

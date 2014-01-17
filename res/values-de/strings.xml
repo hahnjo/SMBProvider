@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">SMBProvider</string>
+	<string name="title_accountSetup">Neues Konto einrichten</string>
+
+	<string name="menu_addAccount">Neues Konto</string>
+	<string name="menu_saveAccount">Speichern</string>
+	<string name="menu_deleteAccount">Löschen</string>
+
+	<string name="deleteAccount_title">Konto löschen?</string>
+	<string name="deleteAccount_message">Bist du sicher, dass du dieses Konto löschen möchtest?\nDies kann nicht rückgängig gemacht werden!</string>
+
+	<string name="invalidName_title">Ungültiger Name</string>
+	<string name="invalidName_message">Es existiert bereits ein Konto mit dem Namen %s!\nBitte wähle einen anderen.</string>
+
+	<string name="header_about">Über…</string>
+
+	<!-- Preferences -->
+	<string name="preferences">Einstellungen</string>
+
+	<string name="preferences_name">Name</string>
+	<string name="preferences_name_summary">Name für diese Verbindung (einmalig)</string>
+
+	<string name="preferences_server">Server</string>
+	<string name="preferences_server_summary">Entweder sein Name oder IP-Adresse (Benötigt)</string>
+
+	<string name="preferences_username">Benutzername</string>
+
+	<string name="preferences_domain">Domain</string>
+
+	<string name="preferences_password">Passwort</string>
+
+	<string name="noAuthentication">Keine Authentifizierung</string>
+	<string name="noDomain">Keine Domain</string>
+	<string name="noPassword">Kein Passwort</string>
+
+	<string name="preferences_status">Status</string>
+
+	<string name="status_enterData">Bitte gib einen Servernamen ein!</string>
+	<string name="status_connecting">Verbinden…</string>
+	<string name="status_connected">Verbunden</string>
+	<string name="status_disconnected">Nicht verbunden</string>
+
+	<!-- About -->
+	<string name="about_googlePlay">Google Play</string>
+	<string name="about_googlePlay_summary">Diese App bei Google Play</string>
+
+	<string name="about_github">Github</string>
+	<string name="about_github_summary">Ihr Quelltext bei Github</string>
+
+	<string name="about_contact">Kontakt</string>
+	<string name="about_contact_summary">Schreib mir eine Mail</string>
+
+	<string name="about_version">Version</string>
+</resources>

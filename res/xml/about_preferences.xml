@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<Preference
+		android:key="@string/about_googlePlay_key"
+		android:persistent="false"
+		android:summary="@string/about_googlePlay_summary"
+		android:title="@string/about_googlePlay" />
+
+	<Preference
+		android:key="@string/about_github_key"
+		android:persistent="false"
+		android:summary="@string/about_github_summary"
+		android:title="@string/about_github" />
+
+	<Preference
+		android:key="@string/about_contact_key"
+		android:persistent="false"
+		android:summary="@string/about_contact_summary"
+		android:title="@string/about_contact" />
+
+	<Preference
+		android:enabled="false"
+		android:key="@string/about_version_key"
+		android:persistent="false"
+		android:title="@string/about_version" />
+
+</PreferenceScreen>

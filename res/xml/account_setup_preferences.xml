@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<EditTextPreference
+		android:key="@string/preferences_name_key"
+		android:persistent="false"
+		android:summary="@string/preferences_name_summary"
+		android:title="@string/preferences_name" />
+
+	<EditTextPreference
+		android:inputType="textNoSuggestions"
+		android:key="@string/preferences_server_key"
+		android:persistent="false"
+		android:summary="@string/preferences_server_summary"
+		android:title="@string/preferences_server" />
+
+	<EditTextPreference
+		android:inputType="textNoSuggestions"
+		android:key="@string/preferences_username_key"
+		android:persistent="false"
+		android:summary="@string/noAuthentication"
+		android:title="@string/preferences_username" />
+
+	<EditTextPreference
+		android:enabled="false"
+		android:inputType="textNoSuggestions"
+		android:key="@string/preferences_domain_key"
+		android:persistent="false"
+		android:summary="@string/noAuthentication"
+		android:title="@string/preferences_domain" />
+
+	<EditTextPreference
+		android:enabled="false"
+		android:inputType="textPassword"
+		android:key="@string/preferences_password_key"
+		android:persistent="false"
+		android:summary="@string/noAuthentication"
+		android:title="@string/preferences_password" />
+
+	<Preference
+		android:key="@string/preferences_status_key"
+		android:persistent="false"
+		android:summary="@string/status_enterData"
+		android:title="@string/preferences_status" />
+
+</PreferenceScreen>
