@@ -1,0 +1,7 @@
+PLEASE NOTICE: This app is not yet feature-complete and is currently only able to read files, neither to modify them nor to create new ones. Please do not rate this app badly beacause of this fact.
+I'm currently working on this. You can keep track of my development on Github (see below).
+
+This app uses the new storage access framework introduced with Android 4.4 KitKat to give you access to files on SMB shares (aka Windows Shares).
+By means of a system dialog, every app can let you open files from there. In the future, you will also be able to directly edit them or create new files.
+
+The sources of this app are released under the GPLv3 and can be visited at https://github.com/hahnjo/SMBProvider. Feel free to fork and edit / translate it. Don't fotget to send me pull requests!

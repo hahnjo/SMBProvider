@@ -1,0 +1,7 @@
+BITTE BEACHTEN: Diese App ist noch nicht fertig und kann aktuell nur Dateien lesen, weder sie bearbeiten noch neue erstellen. Bitte bewerte diese App deswegen nicht schlecht.
+Ich arbeite aktuell daran. Du kannst den Fortschritt der Entwicklung bei Github verfolgen (siehe unten).
+
+Diese App benutzt das neue Storage Access Framework, das mit Android 4.4 Kitkat eingeführt wurde, um dir Zugriff auf Dateien auf SMB-Freigaben zu ermöglichen (auch bekannt als Windows-Freigaben).
+Über einen System-Dialog kann jede App dich Dateien von dort öffnen lassen. In der Zukunft wirst du die dann auch direkt bearbeiten oder neue erstellen.
+
+Der Quelltext dieser App sind unter der GPLv3 veröffentlich und bei Github unter https://github.com/hahnjo/SMBProvider bereitgestellt. Dort kannst du die App bearbeiten oder übersetzen und mir die Änderungen danach zusenden.
