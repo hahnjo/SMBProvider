@@ -25,9 +25,7 @@
 	<string name="preferences_server_summary">Entweder sein Name oder IP-Adresse (Benötigt)</string>
 
 	<string name="preferences_username">Benutzername</string>
-
 	<string name="preferences_domain">Domain</string>
-
 	<string name="preferences_password">Passwort</string>
 
 	<string name="noAuthentication">Keine Authentifizierung</string>
