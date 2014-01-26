@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="app_name">SMBProvider</string>
-	<string name="title_accountSetup">Setup New Account</string>
+	<string name="title_accountSetup">Setup New Connection</string>
 
-	<string name="menu_addAccount">Add Account</string>
+	<string name="menu_addAccount">Add Connection</string>
 	<string name="menu_saveAccount">Save</string>
 	<string name="menu_deleteAccount">Delete</string>
 
-	<string name="deleteAccount_title">Delete account?</string>
-	<string name="deleteAccount_message">Are you sure that you want to delete this account?\nThis cannot be reverted!</string>
+	<string name="deleteAccount_title">Delete connection?</string>
+	<string name="deleteAccount_message">Are you sure that you want to delete this connection?\nThis cannot be reverted!</string>
 
 	<string name="invalidName_title">Invalid name</string>
-	<string name="invalidName_message">There is already an account with the name %s!\nPlease choose another.</string>
+	<string name="invalidName_message">There is already a connection with the name %s!\nPlease choose another.</string>
 
 	<string name="header_about">About</string>
 
@@ -22,7 +22,7 @@
 	<string name="preferences_name_summary">Name for this connection (unique)</string>
 
 	<string name="preferences_server">Server</string>
-	<string name="preferences_server_summary">Either its name or IP address (Required)</string>
+	<string name="preferences_server_summary">Either its name or IP address (required)</string>
 
 	<string name="preferences_username">User name</string>
 	<string name="preferences_domain">Domain</string>
