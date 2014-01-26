@@ -13,6 +13,9 @@
 	<string name="invalidName_title">Invalid name</string>
 	<string name="invalidName_message">There is already a connection with the name %s!\nPlease choose another.</string>
 
+	<string name="slashInName_title">Slash in name</string>
+	<string name="slashInName_message">Slashes in the name are not allowed!\nPlease choose another.</string>
+
 	<string name="header_about">About</string>
 
 	<!-- Preferences -->

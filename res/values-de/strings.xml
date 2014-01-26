@@ -14,6 +14,9 @@
 	<string name="invalidName_title">Ungültiger Name</string>
 	<string name="invalidName_message">Es existiert bereits eine Verbindung mit dem Namen %s!\nBitte wähle einen anderen.</string>
 
+	<string name="slashInName_title">Schrägstrich im Namen</string>
+	<string name="slashInName_message">Schrägstriche sind im Namen nicht erlaubt!\nBitte wähle einen anderen.</string>
+
 	<string name="header_about">Über…</string>
 
 	<!-- Preferences -->
