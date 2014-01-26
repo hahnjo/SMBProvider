@@ -5,3 +5,5 @@ Diese App benutzt das neue Storage Access Framework, das mit Android 4.4 Kitkat 
 Über einen System-Dialog kann jede App dich Dateien von dort öffnen lassen. In der Zukunft wirst du die dann auch direkt bearbeiten oder neue erstellen.
 
 Der Quelltext dieser App sind unter der GPLv3 veröffentlich und bei Github unter https://github.com/hahnjo/SMBProvider bereitgestellt. Dort kannst du die App bearbeiten oder übersetzen und mir die Änderungen danach zusenden.
+
+Thread bei XDA-Developers: https://forum.xda-developers.com/showthread.php?t=2622902

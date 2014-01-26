@@ -5,3 +5,5 @@ This app uses the new storage access framework introduced with Android 4.4 KitKa
 By means of a system dialog, every app can let you open files from there. In the future, you will also be able to directly edit them or create new files.
 
 The sources of this app are released under the GPLv3 and can be visited at https://github.com/hahnjo/SMBProvider. Feel free to fork and edit / translate it. Don't fotget to send me pull requests!
+
+Thread at XDA-Developers: https://forum.xda-developers.com/showthread.php?t=2622902
