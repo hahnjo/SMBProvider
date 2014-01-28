@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <string name="app_name">Провайдер SMB</string>
+        <string name="title_accountSetup">Настройка нового соединения</string>
+
+        <string name="menu_addAccount">Добавить соединение</string>
+        <string name="menu_saveAccount">Сохранить</string>
+        <string name="menu_deleteAccount">Удалить</string>
+
+        <string name="deleteAccount_title">Удалить соединение?</string>
+        <string name="deleteAccount_message">Вы действительно хотите удалить это соединение?\nДанное действие нельзя отменить!</string>
+
+        <string name="invalidName_title">Некорректное название</string>
+        <string name="invalidName_message">Соединение с таким именем уже существует %s!\nВыберите другое название.</string>
+
+        <string name="slashInName_title">Слэш в названии</string>
+        <string name="slashInName_message">Слэши в названии недопустимы!\nВыберите другое название.</string>
+
+        <string name="header_about">О программе</string>
+
+        <!-- Preferences -->
+        <string name="preferences">Настройки</string>
+
+        <string name="preferences_name">Имя</string>
+        <string name="preferences_name_summary">Название соединения (уникальное)</string>
+
+        <string name="preferences_server">Сервер</string>
+        <string name="preferences_server_summary">Зачастую это имя или IP адрес (обязательно)</string>
+
+        <string name="preferences_username">Имя пользователя</string>
+        <string name="preferences_domain">Домен</string>
+        <string name="preferences_password">Пароль</string>
+
+        <string name="noAuthentication">Не авторизировано</string>
+        <string name="noDomain">Домен отсутствует</string>
+        <string name="noPassword">Пароль отсутствует</string>
+
+        <string name="preferences_status">Статус</string>
+
+        <string name="status_enterData">Введите имя сервера</string>
+        <string name="status_connecting">Идёт соединение…</string>
+        <string name="status_connected">Подключено</string>
+        <string name="status_disconnected">Отсоединено</string>
+
+        <!-- About -->
+        <string name="about_googlePlay">Google Play</string>
+        <string name="about_googlePlay_summary">Отобразить приложение в Google Play</string>
+
+        <string name="about_github">Github</string>
+        <string name="about_github_summary">Заглянуть в исходный код на Github</string>
+
+        <string name="about_contact">Связь</string>
+        <string name="about_contact_summary">Написать мне письмо</string>
+
+        <string name="about_version">Версия</string>
+</resources>
