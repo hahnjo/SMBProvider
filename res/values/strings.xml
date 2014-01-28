@@ -1,47 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="app_name">SMBProvider</string>
-	<string name="title_accountSetup">Setup New Account</string>
+	<string name="title_accountSetup">Setup New Connection</string>
 
-	<string name="menu_addAccount">Add Account</string>
+	<string name="menu_addAccount">Add Connection</string>
 	<string name="menu_saveAccount">Save</string>
 	<string name="menu_deleteAccount">Delete</string>
 
-	<string name="deleteAccount_title">Delete account?</string>
-	<string name="deleteAccount_message">Are you sure that you want to delete this account?\nThis cannot be reverted!</string>
+	<string name="deleteAccount_title">Delete connection?</string>
+	<string name="deleteAccount_message">Are you sure that you want to delete this connection?\nThis cannot be reverted!</string>
 
 	<string name="invalidName_title">Invalid name</string>
-	<string name="invalidName_message">There is already an account with the name %s!\nPlease choose another.</string>
+	<string name="invalidName_message">There is already a connection with the name %s!\nPlease choose another.</string>
+
+	<string name="slashInName_title">Slash in name</string>
+	<string name="slashInName_message">Slashes in the name are not allowed!\nPlease choose another.</string>
 
 	<string name="header_about">About</string>
 
 	<!-- Preferences -->
 	<string name="preferences">Preferences</string>
-	<string name="account_preferences_key" translatable="false">account_preferences</string>
 
 	<string name="preferences_name">Name</string>
-	<string name="preferences_name_key" translatable="false">name</string>
 	<string name="preferences_name_summary">Name for this connection (unique)</string>
 
 	<string name="preferences_server">Server</string>
-	<string name="preferences_server_key" translatable="false">server</string>
-	<string name="preferences_server_summary">Either its name or IP address (Required)</string>
+	<string name="preferences_server_summary">Either its name or IP address (required)</string>
 
 	<string name="preferences_username">User name</string>
-	<string name="preferences_username_key" translatable="false">username</string>
-
 	<string name="preferences_domain">Domain</string>
-	<string name="preferences_domain_key" translatable="false">domain</string>
-
 	<string name="preferences_password">Password</string>
-	<string name="preferences_password_key" translatable="false">password</string>
 
 	<string name="noAuthentication">No authentication</string>
 	<string name="noDomain">No domain</string>
 	<string name="noPassword">No password</string>
 
 	<string name="preferences_status">Status</string>
-	<string name="preferences_status_key" translatable="false">status</string>
 
 	<string name="status_enterData">Please enter a server name</string>
 	<string name="status_connecting">Connecting…</string>
@@ -50,17 +44,13 @@
 
 	<!-- About -->
 	<string name="about_googlePlay">Google Play</string>
-	<string name="about_googlePlay_key" translatable="false">googlePlay</string>
 	<string name="about_googlePlay_summary">Visit this app on Google Play</string>
 
 	<string name="about_github">Github</string>
-	<string name="about_github_key" translatable="false">github</string>
 	<string name="about_github_summary">Visit its source code on Github</string>
 
 	<string name="about_contact">Contact</string>
-	<string name="about_contact_key" translatable="false">contact</string>
 	<string name="about_contact_summary">Write me a mail</string>
 
 	<string name="about_version">Version</string>
-	<string name="about_version_key" translatable="false">version</string>
 </resources>

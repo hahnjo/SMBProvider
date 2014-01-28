@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="account_preferences_key">account_preferences</string>
+
+	<string name="preferences_name_key">name</string>
+	<string name="preferences_server_key">server</string>
+	<string name="preferences_username_key">username</string>
+	<string name="preferences_domain_key">domain</string>
+	<string name="preferences_password_key">password</string>
+	<string name="preferences_status_key">status</string>
+
+	<string name="about_googlePlay_key">googlePlay</string>
+	<string name="about_github_key">github</string>
+	<string name="about_contact_key">contact</string>
+	<string name="about_version_key">version</string>
+
+</resources>

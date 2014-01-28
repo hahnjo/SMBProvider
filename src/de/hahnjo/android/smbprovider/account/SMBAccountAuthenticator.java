@@ -202,7 +202,7 @@ public class SMBAccountAuthenticator extends AbstractAccountAuthenticator {
 	/**
 	 * @return true, if there is no other {@link Account} with this name (case-insensitive)
 	 */
-	public static boolean isValidAccountName(Context context, String name) {
+	public static boolean isUniqueAccountName(Context context, String name) {
 		return getAccount(context, name) == null;
 	}
 

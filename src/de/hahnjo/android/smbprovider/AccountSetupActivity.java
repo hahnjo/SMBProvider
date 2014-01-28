@@ -132,10 +132,22 @@ public class AccountSetupActivity extends PreferenceActivity implements Preferen
 
 		String name = this.name.getText();
 		// The name must be unique!
-		if (!SMBAccountAuthenticator.isValidAccountName(getApplicationContext(), name)) {
+		if (!SMBAccountAuthenticator.isUniqueAccountName(getApplicationContext(), name)) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(this)
 				.setTitle(R.string.invalidName_title)
 				.setMessage(getString(R.string.invalidName_message, name))
+				.setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+					}
+				});
+			builder.show();
+			return false;
+		} else if (name.contains("/")) {
+			AlertDialog.Builder builder = new AlertDialog.Builder(this)
+				.setTitle(R.string.slashInName_title)
+				.setMessage(R.string.slashInName_message)
 				.setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
