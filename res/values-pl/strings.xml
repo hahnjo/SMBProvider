@@ -38,7 +38,7 @@
 	<string name="preferences_status">Status</string>
 
 	<string name="status_enterData">Wprowadź nazwę serwera</string>
-	<string name="status_connecting">Łączenież/string>
+	<string name="status_connecting">Łączenież</string>
 	<string name="status_connected">Połączony</string>
 	<string name="status_disconnected">Rozłączony</string>
 
