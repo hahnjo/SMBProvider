@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">SMBProvider</string>
+	<string name="title_accountSetup">Konfiguruj nowe połączenie</string>
+
+	<string name="menu_addAccount">Dodaj połączenie</string>
+	<string name="menu_saveAccount">Zapisz</string>
+	<string name="menu_deleteAccount">Usuń</string>
+
+	<string name="deleteAccount_title">Usunąć połączenie?</string>
+	<string name="deleteAccount_message">Jesteś pewien, że chcesz usunąć to połączenie?\nOperacja jest nieodwracalna!</string>
+
+	<string name="invalidName_title">Nieprawidłowa nazwa</string>
+	<string name="invalidName_message">Istnieje już połączenie o nazwie %s!\nProszę wybrać inną.</string>
+
+	<string name="slashInName_title">Ukośnik w nazwie</string>
+	<string name="slashInName_message">Ukośniki w nazwie są niedozwolone!\nProszę wybrać inną nazwę.</string>
+
+	<string name="header_about">O programie</string>
+
+	<!-- Preferences -->
+	<string name="preferences">Ustawienia</string>
+
+	<string name="preferences_name">Nazwa</string>
+	<string name="preferences_name_summary">Nazwa dla tego połączenia (unikalna)</string>
+
+	<string name="preferences_server">Serwer</string>
+	<string name="preferences_server_summary">Nazwa lub adres IP (wymagane)</string>
+
+	<string name="preferences_username">Nazwa użytkownika</string>
+	<string name="preferences_domain">Domena</string>
+	<string name="preferences_password">Hasło</string>
+
+	<string name="noAuthentication">Brak uwierzytelniania</string>
+	<string name="noDomain">Brak domeny</string>
+	<string name="noPassword">Brak hasła</string>
+
+	<string name="preferences_status">Status</string>
+
+	<string name="status_enterData">Wprowadź nazwę serwera</string>
+	<string name="status_connecting">Łączenież</string>
+	<string name="status_connected">Połączony</string>
+	<string name="status_disconnected">Rozłączony</string>
+
+	<!-- About -->
+	<string name="about_googlePlay">Google Play</string>
+	<string name="about_googlePlay_summary">Odwiedź aplikację w sklepie Google Play</string>
+
+	<string name="about_github">Github</string>
+	<string name="about_github_summary">Przejrzyj kod źródłowy aplikacji na Github</string>
+
+	<string name="about_contact">Kontakt</string>
+	<string name="about_contact_summary">Napisz do mnie e-mail</string>
+
+	<string name="about_version">Wersja</string>
+</resources>

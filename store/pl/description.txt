@@ -1,0 +1,9 @@
+Proszę o uwagę: Ta aplikacja nie jest jeszcze gotowa. Umożliwia obecnie jedynie odczyt plików, bez możliwości ich modyfikowania lub tworzenia nowych. Nie wystawiaj niskiej oceny tylko z tego powodu.
+Cały czas nad tym pracuję. Możesz śledzić postęp na Github (patrz poniżej).
+
+Aplikacja wykorzystuje nowy framework dostępu do magazynu, który został zaprezentowany w Android 4.4 KitKat, aby umożliwić dostęp do plików na udziałach SMB (znanych również jako Udziały Windows).
+Każda aplikacja może otwierać te pliki poprzez systemowe okno dialogowe. Wkrótce będzie można bezpośrednio modyfikować lub tworzyć nowe pliki.
+
+Kod źródłowy aplikacji jest rozpowszechniany na licencji GPLv3 i znajduje się na https://github.com/hahnjo/SMBProvider. Zapraszam do kopiowania, modyfikowania lub tłumaczenia na inne języki. Nie zapomnij przesłać mi swoich zmian!
+
+Wątek na XDA-Developers: https://forum.xda-developers.com/showthread.php?t=2622902

@@ -1,0 +1,9 @@
+VEUILLE REMARQUER: Cette application n'est pas déjà fini et dans le moment, elle est seulement capable de liser des fichier, ni de les modifier ni de créer des nouveaux. S'il te plaît, n'évalue pas mal cette applicaiton à cause de ce fait.
+Je suis en train de travailler sur cela. Tu peux suivre mon traivail à Github (voir dessous)
+
+Cette application utilise un nouvel cadre pour l'accès des fichiers qui était introduit avec Android 4.4 KitKat pour te donner accès à des fichiers sur shares SMB (aka Windows Shares).
+Par un dialogue du system, chaque application peut de donner la possibilité d'en ouvrir des fichiers. Dans l'avenir, tu pourra aussi les éditer directement ou créer des nouveaux.
+
+Les sources de cette application sont publié sous le GPLv3 et peuvent être visité à https://github.com/hahnjo/SMBProvider. Tu y peut modifier l'application ou la traduire et m'envoyer les changements.
+
+Sujet aux XDA-Developers: https://forum.xda-developers.com/showthread.php?t=2622902
