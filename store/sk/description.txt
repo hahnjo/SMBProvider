@@ -1,0 +1,9 @@
+PROSÍM, BERTE NA VEDOMIE!: Táto aplikácia nie je dokončená z hľadiska funkcií a aktuálne umožňuje len čítanie súborov. Nie je možné ich upravovať a ani vytvárať nové. Prosím, neohodnotite túto aplikáciu zle kvôli tejto skutočnosti.
+Aktuálne pracujem na tom. Môžete sledovať môj vývoj na Githube (viď nižšie).
+
+Táto aplikácia používa nový framework na prístup k úložisku predstavený spolu s Androidom 4.4 KitKat na získanie prístupu k zdieľaniam SMB (Zdieľanie Windows).
+Prostredníctvom systémového dialógu môže odtiaľ každá aplikácia otvoriť súbory. V budúcnosti budete môcť priamo upravovať alebo vytvárať nové súbory.
+
+Zdrojový kód tejto aplikácie je uvoľnený pod GPLv3 a nájdete ho na tejto adrese https://github.com/hahnjo/SMBProvider. Neváhajte projekt forknúť a upraviť/preložiť ho. Nezabudnite poslať žiadosť na zlúčenie!
+
+Téma na fóre XDA-Developers: https://forum.xda-developers.com/showthread.php?t=2622902
