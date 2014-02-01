@@ -27,11 +27,11 @@
 	<string name="preferences_server">Serveur</string>
 	<string name="preferences_server_summary">Ou son nome ou son adresse IP (requis)</string>
 
-	<string name="preferences_username">Nom d'utilisateur</string>
+	<string name="preferences_username">Nom d\'utilisateur</string>
 	<string name="preferences_domain">Domaine</string>
 	<string name="preferences_password">Mot de passe</string>
 
-	<string name="noAuthentication">Pas d'authentication</string>
+	<string name="noAuthentication">Pas d\'authentification</string>
 	<string name="noDomain">Pas de domaine</string>
 	<string name="noPassword">Pas de mot de passe</string>
 
@@ -50,7 +50,7 @@
 	<string name="about_github_summary">Visiter son code source à Github</string>
 
 	<string name="about_contact">Contact</string>
-	<string name="about_contact_summary">M'envoie un e-mail</string>
+	<string name="about_contact_summary">M\'envoie un e-mail</string>
 
 	<string name="about_version">Version</string>
 </resources>
