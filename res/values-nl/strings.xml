@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">SMBProvider</string>
+	<string name="title_accountSetup">Nieuwe verbinding instellen</string>
+
+	<string name="menu_addAccount">Verbinding toevoegen</string>
+	<string name="menu_saveAccount">Opslaan</string>
+	<string name="menu_deleteAccount">Verwijder</string>
+
+	<string name="deleteAccount_title">Verbinding verwijderen?</string>
+	<string name="deleteAccount_message">Ben je zeker dat je deze verbinding wil verwijderen?\nDit kan niet ongedaan worden gemaakt!</string>
+
+	<string name="invalidName_title">Ongeldige naam</string>
+	<string name="invalidName_message">Er is al en verbinding met deze naam %s!\nKies alstublieft een andere.</string>
+
+	<string name="slashInName_title">Slash in de naam</string>
+	<string name="slashInName_message">Slashes in de naam zijn niet toegestaan!\nKies alstublieft een andere.</string>
+
+	<string name="header_about">Over</string>
+
+	<!-- Preferences -->
+	<string name="preferences">Voorkeuren</string>
+
+	<string name="preferences_name">Naam</string>
+	<string name="preferences_name_summary">Naam voor deze verbinding (uniek)</string>
+
+	<string name="preferences_server">Server</string>
+	<string name="preferences_server_summary">Naam of IP adres (vereist)</string>
+
+	<string name="preferences_username">Gebtuiker naam</string>
+	<string name="preferences_domain">Domein</string>
+	<string name="preferences_password">Paswoord</string>
+
+	<string name="noAuthentication">Geen authenticatie</string>
+	<string name="noDomain">Geen domein</string>
+	<string name="noPassword">Geen paswoord</string>
+
+	<string name="preferences_status">Status</string>
+
+	<string name="status_enterData">Geef alstublieft een nieuwe server naam in</string>
+	<string name="status_connecting">Verbinden…</string>
+	<string name="status_connected">Verbonden</string>
+	<string name="status_disconnected">Verbinding verbroken</string>
+
+	<!-- About -->
+	<string name="about_googlePlay">Google Play</string>
+	<string name="about_googlePlay_summary">Bekijk deze app op Google Play</string>
+
+	<string name="about_github">Github</string>
+	<string name="about_github_summary">Bekijk de source code op Github</string>
+
+	<string name="about_contact">Contact</string>
+	<string name="about_contact_summary">Zend me een mail</string>
+
+	<string name="about_version">Versie</string>
+</resources>
