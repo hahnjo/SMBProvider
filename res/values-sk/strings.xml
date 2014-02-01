@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">SMBProvider</string>
+	<string name="title_accountSetup">Nastaviť nové pripojenie</string>
+
+	<string name="menu_addAccount">Pridať pripojenie</string>
+	<string name="menu_saveAccount">Uložiť</string>
+	<string name="menu_deleteAccount">Vymazať</string>
+
+	<string name="deleteAccount_title">Vymazať pripojenie?</string>
+	<string name="deleteAccount_message">Ste si sitý, že chcete vymazať toto pripojenie?\nTáto akcia sa nedá vrátiť!</string>
+
+	<string name="invalidName_title">Neplatný názov</string>
+	<string name="invalidName_message">Pripojenie s názvom %s už existuje!\nProsím, vyberte iný názov.</string>
+
+	<string name="slashInName_title">Lomka v názve</string>
+	<string name="slashInName_message">Lomky v názve nie sú povolené!\nProsím, vyberte iný názov.</string>
+
+	<string name="header_about">O aplikácii</string>
+
+	<!-- Preferences -->
+	<string name="preferences">Nastavenia</string>
+
+	<string name="preferences_name">Názov</string>
+	<string name="preferences_name_summary">Názov tohto pripojenia (jedinečné)</string>
+
+	<string name="preferences_server">Server</string>
+	<string name="preferences_server_summary">Buď jeho názov alebo IP adresa (vyžadované)</string>
+
+	<string name="preferences_username">Používateľské meno</string>
+	<string name="preferences_domain">Doména</string>
+	<string name="preferences_password">Heslo</string>
+
+	<string name="noAuthentication">Žiadne overenie</string>
+	<string name="noDomain">Žiadna doména</string>
+	<string name="noPassword">Žiadne heslo</string>
+
+	<string name="preferences_status">Stav</string>
+
+	<string name="status_enterData">Prosím, zadajte názov servera</string>
+	<string name="status_connecting">Pripájanie…</string>
+	<string name="status_connected">Pripojené</string>
+	<string name="status_disconnected">Odpojené</string>
+
+	<!-- About -->
+	<string name="about_googlePlay">Obchod Play</string>
+	<string name="about_googlePlay_summary">Zobraziť aplikáciu v Obchode Play</string>
+
+	<string name="about_github">Github</string>
+	<string name="about_github_summary">Zobraziť zdrojový kód na Githube</string>
+
+	<string name="about_contact">Kontakt</string>
+	<string name="about_contact_summary">Napíšte mi e-mail</string>
+
+	<string name="about_version">Verzia</string>
+</resources>
