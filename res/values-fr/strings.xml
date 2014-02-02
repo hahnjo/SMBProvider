@@ -3,7 +3,7 @@
 	<string name="app_name">SMBProvider</string>
 	<string name="title_accountSetup">Configurer une nouvelle connexion</string>
 
-	l<string name="menu_addAccount">Nouvelle connexion</string>
+	<string name="menu_addAccount">Nouvelle connexion</string>
 	<string name="menu_saveAccount">Enregistrer</string>
 	<string name="menu_deleteAccount">Effacer</string>
 
