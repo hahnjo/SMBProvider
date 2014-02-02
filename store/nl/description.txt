@@ -1,0 +1,11 @@
+OPMERKING: Deze app is nog niet compleet in alle functies en is momenteel enkel in staat bestanden te lezen, het kan geen bestanden veranderen of nieuwe maken. Geef alstublieft geen slechte beoordeling hierdoor.
+Ik werk hier momenteel aan. U kan de ontwikkeling volgen op Github (kijk hieronder)
+
+Deze app gebruikt het nieuwe toegang tot opslag framework geïntroduceerd met Android 4.4 KitKat om u toegang te geven tot bestanden op SMB delingen (aka Windows delen)
+Door het gebruik van een systeem diallog, kan ieder app u bestanden laten openen van daar. In de toekomst zal u ze direct kunnen bewerken of nieuwe maken.
+
+De bronnen van deze app zijn vrijgegeven ondezr de GPLv3 en kunnen bekeken worden op  https://github.com/hahnjo/SMBProvider. Voel u vrij om het te forken en bewerken / vertalen. Vergeet niet me een pull verzoek te zenden!
+
+Draad op XDA-Developers forum: https://forum.xda-developers.com/showthread.php?t=2622902
+
+
