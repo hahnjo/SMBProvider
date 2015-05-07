@@ -39,7 +39,10 @@ public class RootCursor extends MatrixCursor {
 
 	private void addRow(String accountName, String summary) {
 		newRow().add(DocumentsContract.Root.COLUMN_DOCUMENT_ID, accountName + '/')
-			.add(DocumentsContract.Root.COLUMN_FLAGS, 0)
+			.add(DocumentsContract.Root.COLUMN_FLAGS, 16)
+				// 16 (formally DocumentsContract.Root.FLAG_SUPPORTS_IS_CHILD) advertises support
+				// for directory selection via ACTION_OPEN_DOCUMENT_TREE.  But using the formal
+				// name here might require adding <uses-sdk minSdkVersion='21'/> to manifest.
 			.add(DocumentsContract.Root.COLUMN_ICON, R.drawable.ic_launcher)
 			.add(DocumentsContract.Root.COLUMN_MIME_TYPES, null)
 			.add(DocumentsContract.Root.COLUMN_ROOT_ID, accountName)
