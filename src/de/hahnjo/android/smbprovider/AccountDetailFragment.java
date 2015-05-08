@@ -83,6 +83,7 @@ public class AccountDetailFragment extends PreferenceFragment implements Prefere
 	}
 
 	@Override
+	@SuppressWarnings("fallthrough")
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.menu_deleteAccount:
@@ -144,6 +145,7 @@ public class AccountDetailFragment extends PreferenceFragment implements Prefere
 		return preference.getText() == null || preference.getText().length() == 0;
 	}
 
+	@SuppressWarnings("deprecation")
 	private void deleteAccount() {
 		if (BuildConfig.DEBUG) Log.d(TAG, "deleteAccount");
 
