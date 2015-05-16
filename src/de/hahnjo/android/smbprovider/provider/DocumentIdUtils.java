@@ -29,7 +29,7 @@ public class DocumentIdUtils {
 		} else {
 			nameEnd = documentId.length();
 		}
-		int nameStart = documentId.lastIndexOf('/', nameEnd) + 1;
+		int nameStart = documentId.lastIndexOf('/', nameEnd - 1) + 1;
 		return documentId.substring(nameStart, nameEnd);
 	}
 
