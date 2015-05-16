@@ -14,7 +14,7 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
 
 	public static final String GOOGLE_PLAY_URI_START = "market://details?id=";
 	public static final String GITHUB_URL = "https://github.com/hahnjo/SMBProvider";
-	public static final String CONTACT_MAIL_URL = "mailto:hahnjo <smbprovider@hahnjo.de>";
+	public static final String CONTACT_MAIL_URL = "mailto:Jonas Hahnfeld <smbprovider@hahnjo.de>";
 
 	private Preference googlePlay;
 	private Preference github;
