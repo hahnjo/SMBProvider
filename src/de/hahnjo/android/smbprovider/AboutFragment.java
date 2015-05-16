@@ -40,7 +40,7 @@ public class AboutFragment extends PreferenceFragment implements Preference.OnPr
 	@Override
 	public boolean onPreferenceClick(Preference preference) {
 		if (preference == googlePlay) {
-			Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(GOOGLE_PLAY_URI_START + BuildConfig.PACKAGE_NAME));
+			Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(GOOGLE_PLAY_URI_START + BuildConfig.APPLICATION_ID));
 			startActivity(intent);
 		} else if (preference == github) {
 			Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(GITHUB_URL));
