@@ -42,6 +42,14 @@ dependencies {
     compile 'jcifs:jcifs:1.3.17'
 }
 
+allprojects {
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << '-Xlint'
+        }
+    }
+}
+
 android {
     compileSdkVersion 22
     buildToolsVersion '22.0.1'
