@@ -62,9 +62,6 @@ public class SMBProvider extends DocumentsProvider {
 		if (DocumentIdUtils.isRoot(documentId)) {
 			if (BuildConfig.DEBUG) Log.d(TAG, "This is a root, so let's return a RootDocumentCursor");
 			return new RootDocumentCursor(projection, documentId);
-		} else if (DocumentIdUtils.isDirectory(documentId)) {
-			Log.w(TAG, "What does this app want to know about a DIRECTORY?!?");
-			return null;
 		}
 		if (BuildConfig.DEBUG) Log.d(TAG, "This seems to be a document...");
 
@@ -146,6 +143,13 @@ public class SMBProvider extends DocumentsProvider {
 			}
 		}
 		return ParcelFileDescriptor.open(cacheFile, ParcelFileDescriptor.MODE_READ_ONLY);
+	}
+
+	@Override
+	public boolean isChildDocument(String parentDocumentId, String documentId) {
+		// adds support for directory selection (API 21) via ACTION_OPEN_DOCUMENT_TREE
+		return documentId.startsWith(parentDocumentId) // starts with parentDocumentId
+		  && documentId.length() != parentDocumentId.length(); // but does not equal it
 	}
 
 	/**
