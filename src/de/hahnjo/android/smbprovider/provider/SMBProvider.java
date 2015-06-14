@@ -36,11 +36,9 @@ public class SMBProvider extends DocumentsProvider {
 
 	private static final String AUTHORITY = "de.hahnjo.android.smbprovider";
 
-	private Map<String, Cursor> cursorCache = new HashMap<String, Cursor>();
 	private DocumentDatabase database;
 
-	private String lastDirectoryDocumentId;
-	private Document[] lastDirectoryDocumentList;
+	private volatile ChildQueryResult lastChildQueryResult;
 
 	@Override
 	public boolean onCreate() {
@@ -78,22 +76,14 @@ public class SMBProvider extends DocumentsProvider {
 			return cursor;
 		}
 
-		if (lastDirectoryDocumentId != null && lastDirectoryDocumentList != null && documentId.startsWith(lastDirectoryDocumentId)) {
-			String name = DocumentIdUtils.getName(documentId);
-
-			for (Document document : lastDirectoryDocumentList) {
-				if (name.equals(document.name)) {
-					if (BuildConfig.DEBUG) Log.d(TAG, "The document " + name + " was in the last directory that was queried");
-
-					try {
-						return new DocumentCursor(projection, document);
-					} catch (SmbException e) {
-						Log.e(TAG, "Error occurred while retrieving information about a document", e);
-					}
-				}
+		Document document = fromLastChildQuery(documentId);
+		if (document != null) {
+			if (BuildConfig.DEBUG) Log.d(TAG, "The document " + documentId + " was in the last directory that was queried");
+			try {
+				return new DocumentCursor(projection, document);
+			} catch (SmbException e) {
+				Log.e(TAG, "Error occurred while retrieving information about a document", e);
 			}
-
-			Log.w(TAG, "File was not found in list although the documentId of the directory is the same");
 		}
 
 		return null;
@@ -103,12 +93,20 @@ public class SMBProvider extends DocumentsProvider {
 	public Cursor queryChildDocuments(String parentDocumentId, String[] projection, String sortOrder) throws FileNotFoundException {
 		if (BuildConfig.DEBUG) Log.d(TAG, "queryChildDocuments: parentDocumentId=" + parentDocumentId);
 
-		Cursor cursor = cursorCache.remove(parentDocumentId);
-		if (cursor == null) {
+		final ChildQueryResult last = lastChildQueryResult; // thread-safe reference
+		final Cursor cursor;
+		if (last != null && parentDocumentId.equals(last.parent.documentId)) {
+			try {
+				cursor = new DocumentCursor(projection, last.childArray);
+			} catch (SmbException e) {
+				e.printStackTrace();
+				throw new FileNotFoundException( e.toString() );
+			}
+		} else {
 			cursor = new ExtraLoadingCursor();
 			cursor.setNotificationUri(getContext().getContentResolver(), DocumentsContract.buildDocumentUri(AUTHORITY, parentDocumentId));
 
-			new DirectoryListFetcherThread(parentDocumentId, projection).start();
+			new DirectoryListFetcherThread(parentDocumentId).start();
 		}
 
 		return cursor;
@@ -201,7 +199,7 @@ public class SMBProvider extends DocumentsProvider {
 	 * Fetches the list of files and directories under this documentId. Caches this result and then notifies the {@link ExtraLoadingCursor} via the
 	 * {@link ContentResolver} that it shall request the new data.
 	 */
-	private void fetchDirectoryList(String documentId, String[] projection) {
+	private void fetchDirectoryList(String documentId) {
 		String accountName = DocumentIdUtils.getAccountName(documentId);
 		String path = DocumentIdUtils.getPath(documentId);
 		SMBConnection connection = getConnection(accountName);
@@ -216,16 +214,46 @@ public class SMBProvider extends DocumentsProvider {
 				documents[i] = new Document(file, documentId);
 			}
 
-			Cursor cursor = new DocumentCursor(projection, documents);
+			Document dirDoc = fromLastChildQuery(documentId);
+			if (dirDoc == null) {
+				dirDoc = new Document(directory, documentId, /*appendName*/false);
+				}
+			lastChildQueryResult = new ChildQueryResult( dirDoc, documents );
 
-			lastDirectoryDocumentId = documentId;
-			lastDirectoryDocumentList = documents;
-
-			cursorCache.put(documentId, cursor);
 			getContext().getContentResolver().notifyChange(DocumentsContract.buildDocumentUri(AUTHORITY, documentId), null);
 		} catch (SmbException e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * Searches lastChildQueryResult and returns either the specified document, or null.
+	 */
+	private Document fromLastChildQuery(final String id) {
+
+		final ChildQueryResult last = lastChildQueryResult; // take thread-safe snapshot of whole result
+		if (last == null) {
+			return null;
+		}
+
+		final Document parent = last.parent;
+		final String parentId = parent.documentId;
+		if (!id.startsWith(parentId)) {
+			return null;
+		}
+
+		if (id.length() == parentId.length()) {
+			return parent;
+		}
+
+		for (final Document child: last.childArray) {
+			if (id.equals(child.documentId)) {
+				return child;
+			}
+		}
+
+		Log.w(TAG, "Document missing in lastChildQueryResult although directory ID is same");
+		return null;
 	}
 
 	private SMBConnection getConnection(String accountName) {
@@ -241,17 +269,29 @@ public class SMBProvider extends DocumentsProvider {
 	private class DirectoryListFetcherThread extends Thread {
 
 		private final String documentId;
-		private final String[] projection;
 
-		public DirectoryListFetcherThread(String documentId, String[] projection) {
+		public DirectoryListFetcherThread(String documentId) {
 			this.documentId = documentId;
-			this.projection = projection;
 		}
 
 		@Override
 		public void run() {
-			fetchDirectoryList(documentId, projection);
+			fetchDirectoryList(documentId);
 		}
+	}
+
+	/**
+	 * Query result data, lumped together and immutable for thread safety.
+	 */
+	private static final class ChildQueryResult {
+
+		ChildQueryResult(Document _parent, Document[] _childArray) {
+			parent = _parent;
+			childArray = _childArray;
+		}
+
+		final Document parent;
+		final Document[] childArray;
 	}
 
 }
