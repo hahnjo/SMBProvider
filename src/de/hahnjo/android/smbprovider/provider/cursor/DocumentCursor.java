@@ -4,7 +4,6 @@ import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.provider.DocumentsContract;
 import de.hahnjo.android.smbprovider.provider.Document;
-import jcifs.smb.SmbException;
 
 /**
  * A {@link Cursor} that contains information about documents as specified by {@link DocumentsContract.Document}.
@@ -30,7 +29,7 @@ public class DocumentCursor extends MatrixCursor {
 	/**
 	 * Creates a cursor that is filled with one {@link Document}.
 	 */
-	public DocumentCursor(String[] projection, Document document) throws SmbException {
+	public DocumentCursor(String[] projection, Document document) {
 		this(projection);
 
 		addRow(document);
@@ -39,7 +38,7 @@ public class DocumentCursor extends MatrixCursor {
 	/**
 	 * Creates a cursor that is filled with multiple {@link Document}s.
 	 */
-	public DocumentCursor(String[] projection, Document[] documents) throws SmbException {
+	public DocumentCursor(String[] projection, Document[] documents) {
 		this(projection);
 
 		for (Document document : documents) {
@@ -50,7 +49,7 @@ public class DocumentCursor extends MatrixCursor {
 	/**
 	 * Adds a new row for this {@link Document}.
 	 */
-	protected void addRow(Document document) throws SmbException {
+	protected void addRow(Document document) {
 		newRow().add(DocumentsContract.Document.COLUMN_DISPLAY_NAME, document.name)
 			.add(DocumentsContract.Document.COLUMN_DOCUMENT_ID, document.documentId)
 			.add(DocumentsContract.Document.COLUMN_FLAGS, 0)

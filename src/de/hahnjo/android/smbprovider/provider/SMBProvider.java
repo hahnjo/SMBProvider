@@ -76,11 +76,7 @@ public class SMBProvider extends DocumentsProvider {
 		Document document = fromLastChildQuery(documentId);
 		if (document != null) {
 			if (BuildConfig.DEBUG) Log.d(TAG, "The document " + documentId + " was in the last directory that was queried");
-			try {
-				return new DocumentCursor(projection, document);
-			} catch (SmbException e) {
-				Log.e(TAG, "Error occurred while retrieving information about a document", e);
-			}
+			return new DocumentCursor(projection, document);
 		}
 
 		return null;
@@ -93,12 +89,7 @@ public class SMBProvider extends DocumentsProvider {
 		final ChildQueryResult last = lastChildQueryResult; // thread-safe reference
 		final Cursor cursor;
 		if (last != null && parentDocumentId.equals(last.parent.documentId)) {
-			try {
-				cursor = new DocumentCursor(projection, last.childArray);
-			} catch (SmbException e) {
-				e.printStackTrace();
-				throw new FileNotFoundException( e.toString() );
-			}
+			cursor = new DocumentCursor(projection, last.childArray);
 		} else {
 			cursor = new ExtraLoadingCursor();
 			cursor.setNotificationUri(getContext().getContentResolver(), DocumentsContract.buildDocumentUri(AUTHORITY, parentDocumentId));
