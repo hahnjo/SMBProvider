@@ -6,12 +6,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 import android.accounts.Account;
 import android.content.ContentResolver;
 import android.database.Cursor;
+import android.os.Bundle;
 import android.os.CancellationSignal;
 import android.os.ParcelFileDescriptor;
 import android.provider.DocumentsContract;
@@ -26,6 +28,9 @@ import de.hahnjo.android.smbprovider.provider.cursor.RootCursor;
 import de.hahnjo.android.smbprovider.provider.cursor.RootDocumentCursor;
 import jcifs.smb.SmbException;
 import jcifs.smb.SmbFile;
+
+import static android.provider.DocumentsContract.Document.COLUMN_LAST_MODIFIED;
+import static android.provider.DocumentsContract.Document.COLUMN_SIZE;
 
 /**
  * The {@link DocumentsProvider} that gives the Android system access to files on SMB shares.
@@ -65,21 +70,72 @@ public class SMBProvider extends DocumentsProvider {
 		}
 		if (BuildConfig.DEBUG) Log.d(TAG, "This seems to be a document...");
 
+		final String[] projectionOriginal = projection;
+		final int projectionOriginalLength;
+		int cLastModified = -1; // column index, yet unknown
+		boolean wantsLastModifiedCol = false; // till proven otherwise
+		boolean wantsVolatileCol = false; // i.e. one whose value might change and become stale
+		if (projection == null) {
+			projectionOriginalLength = -1;
+			wantsLastModifiedCol = true;
+			wantsVolatileCol = true;
+		} else {
+			projectionOriginalLength = projection.length;
+			for (int c = 0; c < projectionOriginalLength; ++c) {
+				final String columnName = projection[c];
+				if (COLUMN_LAST_MODIFIED.equals(columnName)) {
+					cLastModified = c;
+					wantsLastModifiedCol = true;
+					wantsVolatileCol = true;
+					break;
+				}
+				if (!wantsVolatileCol && COLUMN_SIZE.equals(columnName)) {
+					wantsVolatileCol = true;
+				}
+			}
+		}
+
+		final Document docLastListed = fromLastChildQuery(documentId);
+		if (docLastListed != null) {
+			if (BuildConfig.DEBUG) Log.d(TAG, "The document " + docLastListed.name + " was in the last directory that was queried");
+
+			if (wantsVolatileCol) {
+				if (!wantsLastModifiedCol) { // then add it regardless because it's needed below
+					projection = Arrays.copyOf(projection, projectionOriginalLength + 1);
+					cLastModified = projectionOriginalLength;
+					projection[cLastModified] = COLUMN_LAST_MODIFIED;
+				}
+			}
+			else { // docLastListed cannot be stale under this projection, so just return it:
+				return new DocumentCursor(projectionOriginal, docLastListed);
+		    }
+		}
+
 		Cursor cursor = database.getReadableDatabase().query(DocumentDatabase.TABLE_NAME, projection,
 			DocumentDatabase.Columns.DOCUMENT_ID + "=?", new String[] { documentId }, null, null, null);
 		if (cursor.getCount() == 1) {
 			if (BuildConfig.DEBUG) Log.d(TAG, "Information about the document " + DocumentIdUtils.getName(documentId) + " was in the database");
 
-			return cursor;
+			if (docLastListed == null) {
+				return cursor; // database cursor is all that is known, so just return it
+			}
+
+			if (cLastModified == -1) { // happens when projectionOriginal is null
+				cLastModified = cursor.getColumnIndexOrThrow(COLUMN_LAST_MODIFIED);
+			}
+			cursor.moveToFirst();
+			if (cursor.getLong(cLastModified) > docLastListed.lastModified) {
+				return cursor; // database cursor is fresher than docLastListed, so return it
+			}
 		}
 
-		Document document = fromLastChildQuery(documentId);
-		if (document != null) {
-			if (BuildConfig.DEBUG) Log.d(TAG, "The document " + documentId + " was in the last directory that was queried");
-			return new DocumentCursor(projection, document);
+		cursor.close();
+		if (docLastListed != null) {
+			// it's either all that's known, or no staler than database cursor, so return it:
+			return new DocumentCursor(projectionOriginal, docLastListed);
 		}
 
-		return null;
+		throw new FileNotFoundException();
 	}
 
 	@Override
@@ -88,15 +144,31 @@ public class SMBProvider extends DocumentsProvider {
 
 		final ChildQueryResult last = lastChildQueryResult; // thread-safe reference
 		final Cursor cursor;
+		final boolean isRefreshNeeded;
 		if (last != null && parentDocumentId.equals(last.parent.documentId)) {
-			cursor = new DocumentCursor(projection, last.childArray);
-		} else {
+			final Bundle extras;
+			if (System.nanoTime() - last.nanoTime < 2_000_000_000L) {
+				// The last result was fetched from the network as "extra loading" data
+				// less than a few seconds ago, and clients were notified at that time.
+				// Likely this is just a re-query to pick up the fresh data.  In any case,
+				// the data is fresh enough to assume as current.
+				isRefreshNeeded = false;
+				extras = Bundle.EMPTY;
+			} else {
+				// The last result is old and possibly stale.  It needs to be refreshed
+				// and the client advised to expect notification.
+				isRefreshNeeded = true;
+				extras = ExtraLoadingCursor.EXTRA_LOADING_BUNDLE;
+			}
+			cursor = new DocumentCursor(projection, last.childArray, extras);
+		} else { // there is no cached child result *at all* for this parent
 			cursor = new ExtraLoadingCursor();
+			isRefreshNeeded = true;
+		}
+		if (isRefreshNeeded) {
 			cursor.setNotificationUri(getContext().getContentResolver(), DocumentsContract.buildDocumentUri(AUTHORITY, parentDocumentId));
-
 			new DirectoryListFetcherThread(parentDocumentId).start();
 		}
-
 		return cursor;
 	}
 
@@ -105,12 +177,20 @@ public class SMBProvider extends DocumentsProvider {
 		if (BuildConfig.DEBUG) Log.d(TAG, "openDocument: documentId=" + documentId);
 
 		File cacheFile = getFileForDocument(documentId);
-		if (!cacheFile.exists()) {
+		boolean exists = cacheFile.exists();
+		if (exists) {
+			final Document doc = fromLastChildQuery(documentId);
+			if (doc != null && doc.lastModified - cacheFile.lastModified() > 999L) {
+				// allowing 999 ms for difference in clock granularity between file systems
+				if (cacheFile.delete()) exists = false; // will download a fresh one
+				else Log.w(TAG, "Unable to overwrite stale file that was previously downloaded");
+			}
+		}
+		if (!exists) {
 			if (BuildConfig.DEBUG) Log.d(TAG, "We must download the document...");
 			try {
 				if (cacheFile.getParentFile().mkdirs() && !cacheFile.createNewFile()) {
-					Log.e(TAG, "File could not be created!");
-					return null;
+					throw new FileNotFoundException("File could not be created!");
 				}
 
 				String accountName = DocumentIdUtils.getAccountName(documentId);
@@ -124,13 +204,17 @@ public class SMBProvider extends DocumentsProvider {
 				boolean success = downloadFile(remote, cacheFile, signal);
 				if (!success) {
 					cacheFile.delete();
-					return null;
+					throw new FileNotFoundException();
+				}
+
+				if (!cacheFile.setLastModified(remote.lastModified())) {
+					Log.w(TAG, "Unable to synchronize modification time of downloaded file");
 				}
 
 				database.getWritableDatabase().insert(DocumentDatabase.TABLE_NAME, null, document.toContentValues());
 
 			} catch (IOException e) {
-				return null;
+				throw new FileNotFoundException( e.toString() );
 			}
 		}
 		return ParcelFileDescriptor.open(cacheFile, ParcelFileDescriptor.MODE_READ_ONLY);
@@ -209,11 +293,8 @@ public class SMBProvider extends DocumentsProvider {
 				documents[i] = new Document(file, documentId);
 			}
 
-			Document dirDoc = fromLastChildQuery(documentId);
-			if (dirDoc == null) {
-				dirDoc = new Document(directory, documentId, /*appendName*/false);
-				}
-			lastChildQueryResult = new ChildQueryResult( dirDoc, documents );
+			lastChildQueryResult = new ChildQueryResult(
+			  new Document(directory,documentId,/*appendName*/false), documents );
 
 			getContext().getContentResolver().notifyChange(DocumentsContract.buildDocumentUri(AUTHORITY, documentId), null);
 		} catch (SmbException e) {
@@ -287,6 +368,7 @@ public class SMBProvider extends DocumentsProvider {
 
 		final Document parent;
 		final Document[] childArray;
+		final long nanoTime = System.nanoTime();
 	}
 
 }
