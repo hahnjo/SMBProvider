@@ -12,7 +12,7 @@ import android.provider.DocumentsProvider;
  */
 public class ExtraLoadingCursor extends AbstractCursor {
 
-	private static final Bundle EXTRA_LOADING_BUNDLE = new Bundle();
+	public static final Bundle EXTRA_LOADING_BUNDLE = new Bundle();
 	static {
 		EXTRA_LOADING_BUNDLE.putBoolean(DocumentsContract.EXTRA_LOADING, true);
 	}
